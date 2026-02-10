@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../" type="image/x-icon">
+    <script src=""></script>
+    <title>Dashboard Logística - Setores & Produção</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <a href="">
+        <p class="prod1"></p>
+        <img src="c:\Users\Massonl\Downloads\luan v2 1\luan\image\slide_52_img_236.png" alt="" class="vtd1img">
+        <div class="vtli3"></div>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+         body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(67, 99, 158, 0.431), rgba(49, 84, 149, 0.529)),
+                        url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d");
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        :root {
+            --primary-color: #0052A3;
+            --secondary-color: #E31E24;
+            --dark-bg: #1a1a2e;
+            --card-bg: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --border-color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #710b0b 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(19, 9, 94, 0.369);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: var(--secondary-color);
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+            box-shadow: 0 5px 20px rgba(203, 6, 6, 0.56);
+        }
+
+        header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .upload-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(203, 6, 6, 0.56);
+        }
+
+        .upload-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .file-upload-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .file-upload-btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            box-shadow: 0 5px 20px rgba(203, 6, 6, 0.56);
+        }
+
+        .file-upload-btn input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-upload-btn label {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(203, 6, 6, 0.56);
+        }
+
+        .file-upload-btn label:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(227, 30, 36, 0.3);
+        }
+
+        .file-info {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .file-info.success {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(203, 6, 6, 0.56);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.588);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 5px 20px rgba(203, 6, 6, 0.56);
+        }
+
+        .stat-card h3 {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Sectors Grid */
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .sector-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(203, 6, 6, 0.56);   
+        }
+
+        .sector-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .sector-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .sector-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .sector-title {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .sector-title h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .sector-title p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .sector-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .sector-stat {
+            text-align: center;
+        }
+
+        .sector-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .sector-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .chart-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Auto Update Controls */
+        .control-panel {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .control-group label {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 30px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--success);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        .refresh-interval {
+            padding: 10px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .refresh-interval:hover {
+            border-color: var(--primary-color);
+        }
+
+        .refresh-interval:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 82, 163, 0.1);
+        }
+
+        .btn-manual-refresh {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-manual-refresh:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(227, 30, 36, 0.3);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Table Section */
+        .table-section {
+            background: rgb(231, 231, 231);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary-color), #003d7a);
+        }
+
+        thead th {
+            color: rgb(80, 66, 167);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        tbody td {
+            padding: 15px;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-turno1 {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .badge-turno2 {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .badge-turno3 {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sectors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            thead th, tbody td {
+                padding: 10px;
+            }
+
+            .control-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .control-group {
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 2rem;
+            }
+
+            .sector-stat-value {
+                font-size: 1.5rem;
+            }
+
+            .control-panel {
+                padding: 15px;
+            }
+
+            .btn-manual-refresh {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CONTROLE DE PRODUÇÃO</h1>
+            <p>CEVA LOGISTICS LTDA</p>
+        </header>
+
+        <div class="upload-section">
+            <h2>📁 Carregar Dados do Excel</h2>
+            <div class="file-upload-wrapper">
+                <div class="file-upload-btn">
+                    <label for="file-input">Selecionar Arquivo Excel</label>
+                    <input type="file" id="file-input" accept=".xlsx,.xls">
+                </div>
+                <div class="file-info" id="file-info">Nenhum arquivo selecionado</div>
+            </div>
+        </div>
+
+        <div id="dashboard-content" class="hidden">
+            <!-- Painel de Controle Autônomo -->
+            <div class="control-panel">
+                <div class="control-group">
+                    <label>Atualização Automática:</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="auto-refresh-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label>Intervalo:</label>
+                    <select id="refresh-interval" class="refresh-interval">
+                        <option value="5000">5 segundos</option>
+                        <option value="10000" selected>10 segundos</option>
+                        <option value="30000">30 segundos</option>
+                        <option value="60000">1 minuto</option>
+                        <option value="300000">5 minutos</option>
+                    </select>
+                </div>
+
+                <button class="btn-manual-refresh" id="manual-refresh">
+                    <span>🔄</span>
+                    <span>Atualizar Agora</span>
+                </button>
+
+                <div class="status-indicator">
+                    <div class="status-dot" id="status-dot"></div>
+                    <span class="status-text" id="status-text">Sistema ativo</span>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Produzido</h3>
+                    <div class="stat-value" id="total-producao">0</div>
+                    <div class="stat-label">Unidades</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Setores Ativos</h3>
+                    <div class="stat-value" id="total-setores">0</div>
+                    <div class="stat-label">Departamentos</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Média por Setor</h3>
+                    <div class="stat-value" id="media-setor">0</div>
+                    <div class="stat-label">Unidades/Setor</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Último Update</h3>
+                    <div class="stat-value" id="last-update" style="font-size: 1.5rem;">--:--</div>
+                    <div class="stat-label">Horário</div>
+                </div>
+            </div>
+
+            <div class="sectors-grid" id="sectors-grid"></div>
+
+            <!-- Grade de Gráficos -->
+            <div class="charts-grid">
+                <div class="chart-section">
+                    <h2>Gráfico de Barras - Produção Total</h2>
+                    <div class="chart-container">
+                        <canvas id="barChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <h2> Gráfico de Pizza - Distribuição</h2>
+                    <div class="chart-container">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2> Gráfico de Torre - Comparativo por Setor</h2>
+                <div class="chart-container">
+                    <canvas id="stackedBarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <h2>📋 Registros Detalhados</h2>
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Turno</th>
+                            <th>Setor</th>
+                            <th>Total Produzido</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="loading-spinner" class="spinner hidden"></div>
+    </div>
+
+    <script>
+        let barChartInstance = null;
+        let pieChartInstance = null;
+        let stackedChartInstance = null;
+        let autoRefreshInterval = null;
+        let currentFileData = null;
+        
+        const sectorColors = {
+            'Expedição': '#0052A3',
+            'Almoxarifado': '#E31E24',
+            'RFID': '#27ae60',
+            'Recebimento': '#f39c12',
+            'Encabidados': '#9b59b6',
+            'Arco': '#e74c3c'
+        };
+
+        const sectorIcons = {
+            'Expedição': '',
+            'Almoxarifado': '',
+            'RFID': '',
+            'Recebimento': '',
+            'Encabidados': '',
+            'Arco': ''
+        };
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('file-input').addEventListener('change', handleFileSelect);
+            document.getElementById('auto-refresh-toggle').addEventListener('change', toggleAutoRefresh);
+            document.getElementById('refresh-interval').addEventListener('change', updateRefreshInterval);
+            document.getElementById('manual-refresh').addEventListener('click', manualRefresh);
+            
+            // Tentar carregar dados automaticamente
+            autoLoadData();
+        });
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            document.getElementById('file-info').textContent = `Carregando ${file.name}...`;
+            document.getElementById('loading-spinner').classList.remove('hidden');
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
+
+                    currentFileData = jsonData;
+                    processData(jsonData);
+                    
+                    document.getElementById('file-info').textContent = `✓ ${file.name} carregado com sucesso`;
+                    document.getElementById('file-info').classList.add('success');
+                    document.getElementById('loading-spinner').classList.add('hidden');
+                    document.getElementById('dashboard-content').classList.remove('hidden');
+                    
+                    updateStatusIndicator('success', 'Dados carregados');
+                } catch (error) {
+                    alert('Erro ao processar arquivo: ' + error.message);
+                    document.getElementById('loading-spinner').classList.add('hidden');
+                    updateStatusIndicator('error', 'Erro no carregamento');
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function autoLoadData() {
+            // Simular dados para demonstração autônoma
+            const mockData = generateMockData();
+            currentFileData = mockData;
+            processData(mockData);
+            document.getElementById('file-info').textContent = '✓ Dados de demonstração carregados';
+            document.getElementById('file-info').classList.add('success');
+            document.getElementById('dashboard-content').classList.remove('hidden');
+            updateStatusIndicator('success', 'Sistema ativo');
+        }
+
+        function generateMockData() {
+            const setores = ['Expedição', 'Almoxarifado', 'RFID', 'Recebimento', 'Encabidados', 'Arco'];
+            const turnos = ['Turno 1', 'Turno 2', 'Turno 3'];
+            const data = [];
+            
+            setores.forEach(setor => {
+                turnos.forEach((turno, index) => {
+                    data.push({
+                        'Data': new Date().toLocaleDateString('pt-BR'),
+                        'Horário': `${8 + index * 8}:00`,
+                        'Turno': turno,
+                        'Setor': setor,
+                        'Total Produzido': Math.floor(Math.random() * 500) + 100
+                    });
+                });
+            });
+            
+            return data;
+        }
+
+        function toggleAutoRefresh(e) {
+            if (e.target.checked) {
+                const interval = parseInt(document.getElementById('refresh-interval').value);
+                startAutoRefresh(interval);
+                updateStatusIndicator('active', 'Atualização automática ativa');
+            } else {
+                stopAutoRefresh();
+                updateStatusIndicator('success', 'Modo manual');
+            }
+        }
+
+        function updateRefreshInterval(e) {
+            const isAutoRefreshActive = document.getElementById('auto-refresh-toggle').checked;
+            if (isAutoRefreshActive) {
+                stopAutoRefresh();
+                startAutoRefresh(parseInt(e.target.value));
+            }
+        }
+
+        function startAutoRefresh(interval) {
+            autoRefreshInterval = setInterval(() => {
+                manualRefresh();
+            }, interval);
+        }
+
+        function stopAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+            }
+        }
+
+        function manualRefresh() {
+            updateStatusIndicator('refreshing', 'Atualizando...');
+            
+            // Gerar novos dados simulados
+            const newData = generateMockData();
+            currentFileData = newData;
+            processData(newData);
+            
+            setTimeout(() => {
+                const isAutoActive = document.getElementById('auto-refresh-toggle').checked;
+                updateStatusIndicator(isAutoActive ? 'active' : 'success', 
+                                     isAutoActive ? 'Atualização automática ativa' : 'Atualizado');
+            }, 500);
+        }
+
+        function updateStatusIndicator(type, text) {
+            const dot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            
+            dot.style.background = {
+                'success': '#27ae60',
+                'active': '#3498db',
+                'refreshing': '#f39c12',
+                'error': '#e74c3c'
+            }[type] || '#27ae60';
+            
+            statusText.textContent = text;
+        }
+
+        function processData(data) {
+            // Calcular estatísticas
+            const sectorData = {};
+            const turnoData = {};
+            let totalProducao = 0;
+            
+            data.forEach(row => {
+                const setor = row['Setor'] || row.Setor;
+                const turno = row['Turno'] || row.Turno;
+                const producao = parseInt(row['Total Produzido'] || row['Total Produzido'] || 0);
+                
+                if (setor && setor !== '') {
+                    if (!sectorData[setor]) {
+                        sectorData[setor] = {
+                            total: 0,
+                            registros: 0,
+                            turnos: {}
+                        };
+                    }
+                    sectorData[setor].total += producao;
+                    sectorData[setor].registros++;
+                    
+                    if (!sectorData[setor].turnos[turno]) {
+                        sectorData[setor].turnos[turno] = 0;
+                    }
+                    sectorData[setor].turnos[turno] += producao;
+                    
+                    totalProducao += producao;
+                }
+                
+                if (turno && turno !== '') {
+                    if (!turnoData[turno]) {
+                        turnoData[turno] = 0;
+                    }
+                    turnoData[turno] += producao;
+                }
+            });
+
+            const numSetores = Object.keys(sectorData).length;
+            const mediaSetor = numSetores > 0 ? Math.round(totalProducao / numSetores) : 0;
+
+            // Atualizar cards de estatísticas
+            animateValue('total-producao', 0, totalProducao, 1000);
+            animateValue('total-setores', 0, numSetores, 1000);
+            animateValue('media-setor', 0, mediaSetor, 1000);
+            document.getElementById('last-update').textContent = new Date().toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            // Renderizar componentes
+            renderSectorCards(sectorData);
+            renderBarChart(sectorData);
+            renderPieChart(sectorData);
+            renderStackedChart(sectorData);
+            renderTable(data);
+        }
+
+        function animateValue(id, start, end, duration) {
+            const element = document.getElementById(id);
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.round(current).toLocaleString('pt-BR');
+            }, 16);
+        }
+
+        function renderSectorCards(sectorData) {
+            const grid = document.getElementById('sectors-grid');
+            grid.innerHTML = '';
+
+            Object.entries(sectorData).forEach(([setor, dados]) => {
+                const card = document.createElement('div');
+                card.className = 'sector-card';
+                
+                const color = sectorColors[setor] || '#95a5a6';
+                const icon = sectorIcons[setor] || '📊';
+                
+                card.innerHTML = `
+                    <div class="sector-header">
+                        <div class="sector-icon" style="background: ${color}">
+                            ${icon}
+                        </div>
+                        <div class="sector-title">
+                            <h3>${setor}</h3>
+                            <p>Departamento de ${setor}</p>
+                        </div>
+                    </div>
+                    <div class="sector-stats">
+                        <div class="sector-stat">
+                            <div class="sector-stat-value">${dados.total.toLocaleString('pt-BR')}</div>
+                            <div class="sector-stat-label">Total</div>
+                        </div>
+                        <div class="sector-stat">
+                            <div class="sector-stat-value">${dados.registros}</div>
+                            <div class="sector-stat-label">Registros</div>
+                        </div>
+                        <div class="sector-stat">
+                            <div class="sector-stat-value">${Math.round(dados.total / dados.registros).toLocaleString('pt-BR')}</div>
+                            <div class="sector-stat-label">Média</div>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function renderBarChart(sectorData) {
+            const ctx = document.getElementById('barChart').getContext('2d');
+            
+            if (barChartInstance) {
+                barChartInstance.destroy();
+            }
+
+            const labels = Object.keys(sectorData);
+            const dataValues = labels.map(setor => sectorData[setor].total);
+            const backgroundColors = labels.map(setor => sectorColors[setor] || '#95a5a6');
+
+            barChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total Produzido',
+                        data: dataValues,
+                        backgroundColor: backgroundColors,
+                        borderColor: backgroundColors,
+                        borderWidth: 2,
+                        borderRadius: 8,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            titleFont: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 13
+                            },
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Produção: ' + context.parsed.y.toLocaleString('pt-BR') + ' unidades';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString('pt-BR');
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderPieChart(sectorData) {
+            const ctx = document.getElementById('pieChart').getContext('2d');
+            
+            if (pieChartInstance) {
+                pieChartInstance.destroy();
+            }
+
+            const labels = Object.keys(sectorData);
+            const dataValues = labels.map(setor => sectorData[setor].total);
+            const backgroundColors = labels.map(setor => sectorColors[setor] || '#95a5a6');
+
+            pieChartInstance = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: dataValues,
+                        backgroundColor: backgroundColors,
+                        borderColor: '#fff',
+                        borderWidth: 3,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 12,
+                                    weight: '600'
+                                },
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    return data.labels.map((label, i) => {
+                                        const value = data.datasets[0].data[i];
+                                        const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                        const percentage = ((value / total) * 100).toFixed(1);
+                                        return {
+                                            text: `${label} (${percentage}%)`,
+                                            fillStyle: data.datasets[0].backgroundColor[i],
+                                            hidden: false,
+                                            index: i
+                                        };
+                                    });
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label}: ${value.toLocaleString('pt-BR')} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderStackedChart(sectorData) {
+            const ctx = document.getElementById('stackedBarChart').getContext('2d');
+            
+            if (stackedChartInstance) {
+                stackedChartInstance.destroy();
+            }
+
+            const labels = Object.keys(sectorData);
+            const turnos = ['Turno 1', 'Turno 2', 'Turno 3'];
+            const turnoColors = {
+                'Turno 1': '#3498db',
+                'Turno 2': '#f39c12',
+                'Turno 3': '#9b59b6'
+            };
+
+            const datasets = turnos.map(turno => {
+                return {
+                    label: turno,
+                    data: labels.map(setor => sectorData[setor].turnos[turno] || 0),
+                    backgroundColor: turnoColors[turno],
+                    borderColor: turnoColors[turno],
+                    borderWidth: 2,
+                };
+            });
+
+            stackedChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                    size: 12,
+                                    weight: '600'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString('pt-BR') + ' unidades';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toLocaleString('pt-BR');
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = '';
+
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                
+                const data = row['Data'] || row.Data || '-';
+                const horario = row['Horário'] || row.Horario || '-';
+                const turno = row['Turno'] || row.Turno || '-';
+                const setor = row['Setor'] || row.Setor || '-';
+                const total = row['Total Produzido'] || row['Total Produzido'] || 0;
+
+                let badgeClass = 'badge-turno1';
+                if (turno.includes('2')) badgeClass = 'badge-turno2';
+                if (turno.includes('3')) badgeClass = 'badge-turno3';
+
+                tr.innerHTML = `
+                    <td>${data}</td>
+                    <td>${horario}</td>
+                    <td><span class="badge ${badgeClass}">${turno}</span></td>
+                    <td><strong>${setor}</strong></td>
+                    <td><strong>${parseInt(total).toLocaleString('pt-BR')}</strong></td>
+                `;
+                
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
