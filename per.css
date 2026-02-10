@@ -1,0 +1,488 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    cursor: default;
+    color: white;
+}
+body {
+    background-color: rgba(4, 39, 100, 0.9);
+    background-image: url(../image/slide_02_img_004.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+}
+a {
+    font-style: none;
+    text-decoration: none;
+}
+h1 {
+    position: absolute;
+    top: 2vh;
+    left: 10vh;
+}
+.PO,
+.PO2,
+.poli1,
+.poli2,
+.prod,
+.prod1,
+.poli3,
+.prod2,
+.poli4,
+.nvl,
+.poli5,
+.qua,
+.poli6,
+.abs,
+.poli7,
+.cv,
+.poli8,
+.POimg,
+.prodimg,
+.prod1img,
+.prod2img,
+.nvlimg,
+.quaimg,
+.quatxt,
+.absimg,
+.cvimg {
+    position: absolute;
+}
+.poli1,
+.poli2,
+.poli3,
+.poli4,
+.poli5,
+.poli6,
+.poli7,
+.poli8 {
+    width: 20vh;
+    height: 20vh;
+    background-color: red;
+    transform: rotate(45deg);
+}
+.poli1 {
+    z-index: 10;
+    width: 30vh;
+    height: 30vh;
+    top: 40vh;
+    left: 40vh;
+}
+.POimg {
+    z-index: 100;
+    top: 43vh;
+    left: 46vh;
+    width: 17vh;
+}
+.PO {
+    font-size: 20px;
+    left: 45vh;
+    top: 56vh;
+    z-index: 20;
+    font-weight: bold;
+}
+.PO2 {
+    font-size: 18px;
+    left: 46vh;
+    top: 59.5vh;
+    z-index: 20;
+    font-weight: bold;
+}
+.line1 {
+    position: absolute;
+    z-index: 9;
+    height: 0.4vh;
+    width: 20vh;
+    left: 74vh;
+    top: 54.8vh;
+}
+.poli6 {
+    position: absolute;
+    z-index: 10;
+    top: 47.7vh;
+    left: 95vh;
+    width: 15vh;
+    height: 15vh;
+}
+.quaimg {
+    width: 10vh;
+    z-index: 100;
+    top: 50vh;
+    left: 97vh;
+}
+.qua {
+    position: absolute;
+    top: 64vh;
+    left: 96vh;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 100;
+    color: white;
+}
+.poli6,
+.quaimg,
+.poli2,
+.prodimg {
+    cursor: pointer;
+}
+.poli2 {
+    z-index: 10;
+    top: 15vh;
+    left: 95vh;
+    width: 15vh;
+    height: 15vh;
+}
+.line2 {
+    position: absolute;
+    z-index: 10;
+    height: 0.5vh;
+    width: 18.2vh;
+    background-color: red;
+    left: 73.9vh;
+    top: 22.4vh;
+}
+.line3 {
+    transform: rotate(128deg);
+    position: absolute;
+    z-index: 9;
+    height: 0.5vh;
+    width: 30vh;
+    background-color: red;
+    left: 49.7vh;
+    top: 34.1vh;
+}
+.prodimg {
+    top: 16.5vh;
+    width: 12vh;
+    left: 96vh;
+    z-index: 100;
+}
+.prod {
+    top: 31vh;
+    left: 94vh;
+    color: white;
+    font-weight: bold;
+}
+.poli8 {
+    bottom: 8vh;
+    left: 95vh;
+    width: 15vh;
+    height: 15vh;
+}
+.line4 {
+    position: absolute;
+    z-index: 8;
+    height: 0.4vh;
+    width: 16.2vh;
+    background-color: red;
+    left: 76vh;
+    bottom: 15.1vh;
+}
+.line5 {
+    transform: rotate(230deg);
+    position: absolute;
+    z-index: 9;
+    height: 0.4vh;
+    width: 32.6vh;
+    background-color: red;
+    left: 49.4vh;
+    bottom: 27.5vh;
+}
+.cvimg {
+    z-index: 100;
+    left: 97.3vh;
+    bottom: 11vh;
+    width: 10vh;
+}
+.cv {
+    bottom: -1vh;
+    font-weight: bold;
+    left: 96vh;
+    z-index: 100;
+}
+.poli3 {
+    z-index: 10;
+    top: 9.5vh;
+    left: 125vh;
+    width: 10vh;
+    height: 10vh;
+}
+.poli4 {
+    z-index: 10;
+    top: 9.5vh;
+    left: 150vh;
+    width: 10vh;
+    height: 10vh;
+}
+.line6 {
+    z-index: 8;
+    transform: rotate(131deg);
+    position: absolute;
+    left: 100vh;
+    top: 20vh;
+    width: 14.9vh;
+    height: 0.5vh;
+    background-color: red;
+}
+.line7 {
+    z-index: 9;
+    position: absolute;
+    left: 112.2vh;
+    top: 14.3vh;
+    width: 40vh;
+    height: 0.4vh;
+    background-color: rgb(255, 0, 0);
+}
+.prod1img,
+.prod2img {
+    width: 10vh;
+    z-index: 100;
+}
+.prod1img {
+    left: 125vh;
+    top: 9vh;
+}
+.prod2img {
+    left: 150vh;
+    top: 9vh;
+}
+.prod1 {
+    left: 120vh;
+    top: 20vh;
+    font-weight: bold;
+    font-family: 15px;
+}
+.prod2 {
+    left: 145vh;
+    top: 20vh;
+    font-weight: bold;
+    font-family: 15px;
+}
+.poli5 {
+    z-index: 10;
+    width: 15vh;
+    height: 15vh;
+    top: 33vh;
+    left: 140vh;
+}
+.line8 {
+    z-index: 9;
+    width: 70vh;
+    height: 0.4vh;
+    background-color: red;
+    position: absolute;
+    top: 40.5vh;
+    left: 76vh;
+}
+.line9 {
+    position: absolute;
+    width: 12.5vh;
+    height: 0.4vh;
+    background-color: red;
+    transform: rotate(154deg);
+    top: 43.3vh;
+    left: 64.2vh;
+    z-index: 8;
+}
+.nvlimg {
+    z-index: 100;
+    left: 142.5vh;
+    top: 33vh;
+    width: 12vh;
+}
+.nvl {
+    z-index: 100;
+    left: 137vh;
+    top: 49vh;
+    font-weight: bold;
+    font-size: 18px;
+}
+.poli7 {
+    z-index: 10;
+    width: 15vh;
+    height: 15vh;
+    top: 63.5vh;
+    left: 130vh;
+    background-color: red;
+}
+.line10 {
+    z-index: 9;
+    position: absolute;
+    width: 50vh;
+    height: 0.4vh;
+    background-color: red;
+    top: 70.997vh;
+    left: 80vh;
+}
+.line11 {
+    z-index: 6;
+    position: absolute;
+    width: 16.2vh;
+    height: 0.4vh;
+    background-color: red;
+    top: 66.9vh;
+    left: 64.9vh;
+    transform: rotate(210deg);
+}
+.absimg {
+    width: 10vh;
+    top: 65vh;
+    left: 132.5vh;
+    z-index: 100;
+}
+.abs {
+    top: 79.5vh;
+    left: 130.4vh;
+    font-weight: bold;
+    font-size: 15px;
+}
+.return {
+    position: absolute;
+    bottom: 3vh;
+    width: 25vh;
+    cursor: pointer;
+}
+.ceva {
+    position: absolute;
+    right: 3vh;
+    top: 3vh;
+    width: 15vh;
+}
+.line1,
+.line2,
+.line3,
+.line4,
+.line5,
+.line6,
+.line7,
+.line8,
+.line9,
+.line10,
+.line11 {
+    background-color: #777;
+}
+.line1,
+.line2,
+.line3,
+.line4,
+.line5,
+.line8,
+.line9,
+.line10,
+.line11 {
+    animation-delay: 3s;
+    animation: CarregarLinha 5s ease forwards;
+}
+.line6,
+.line7 {
+    animation: CarregarLinha 5s ease forwards;
+}
+.PO,
+.PO2,
+.abs,
+.cv,
+.prod,
+.prod1,
+.prod2,
+.nvl,
+.qua {
+    color: transparent;
+    animation: AcenderTexto 5s ease forwards;
+}
+.PO,
+.PO2 {
+    animation-delay: 0.2s;
+}
+.abs,
+.qua,
+.cv,
+.prod,
+.nvl {
+    animation-delay: 1s;
+}
+.prod1 {
+    animation-delay: 3s;
+}
+.prod2 {
+    animation-delay: 3s;
+}
+.poli1 {
+    animation: AcenderPoli 2s ease-in-out forwards;
+}
+ 
+.poli2,
+.poli5,
+.poli6,
+.poli7,
+.poli8 {
+    animation: AcenderPoli 7s ease-in-out forwards;
+    cursor: pointer;
+}
+.poli3,
+.poli4 {
+    animation: AcenderPoli 7s ease-in-out forwards;
+}
+.POimg {
+    animation: Revelar 0.2s ease-in-out forwards;
+    animation-delay: 0.2s;
+}
+.prodimg,
+.absimg,
+.nvlimg,
+.quaimg,
+.cvimg {
+    animation: Revelar 4s ease-in-out forwards;
+    animation-delay: 2s;
+    cursor: pointer;
+}
+.prod1img,
+.prod2img {
+    animation: Revelar 3s ease-in-out forwards;
+    animation-delay: 2s;
+    cursor: pointer;
+}
+.POimg,
+.prodimg,
+.prod1img,
+.prod2img,
+.nvlimg,
+.quaimg,
+.absimg,
+.cvimg {
+    opacity: 0;
+    cursor: pointer;
+}
+.POimg {
+    cursor: default;
+}
+
+@keyframes AcenderPoli {
+    from {
+        background-color: gray;
+    }
+    to {
+        background-color: red;
+    }
+}
+@keyframes AcenderTexto {
+    from {
+        color: transparent;
+    }
+    to {
+        color: white;
+    }
+}
+@keyframes CarregarLinha {
+    from {
+        background-color: gray;
+    }
+    to {
+        background-color: red;
+    }
+}
+@keyframes Revelar {
+    to {
+        opacity: 1;
+    }
+}

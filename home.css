@@ -1,0 +1,788 @@
+
+
+* {
+    overflow: hidden;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: default;
+}
+
+body {
+    background-color: rgba(4, 39, 100, 0.9);
+    background-image: url(../image/slide_01_img_001.jpg);
+    background-size: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+}
+.cubo1,
+.cubo2,
+.cubo3,
+.cubo4,
+.cubo5,
+.cubo6,
+.cubo7,
+.cubo8,
+.cubo9,
+.cubo10,
+.cubo11,
+.cubo12,
+.cubo13,
+.cubo14,
+.cubo15,
+.cubo16 {
+    position: absolute;
+    z-index: 10;
+}
+.cubo1 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(221, 10, 10);
+    top: 60px;
+    right: 50px;
+    transform: rotate(45deg);
+}
+.cubo2 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(221, 10, 10);
+    top: 60px;
+    right: 330px;
+    transform: rotate(45deg);
+}
+.cubo3 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(221, 10, 10);
+    top: 340px;
+    right: 50px;
+    transform: rotate(45deg);
+}
+.cubo4 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(221, 10, 10);
+    top: 340px;
+    right: 330px;
+    transform: rotate(45deg);
+}
+.cubo5 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(221, 10, 10);
+    top: 340px;
+    right: 610px;
+    transform: rotate(45deg);
+}
+.cubo6 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(39, 65, 109);
+    top: 200px;
+    right: 190px;
+    transform: rotate(45deg);
+}
+.cubo7 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(39, 65, 109);
+    top: 200px;
+    right: 470px;
+    transform: rotate(45deg);
+}
+.cubo8 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(39, 65, 109);
+    top: 480px;
+    right: 190px;
+    transform: rotate(45deg);
+}
+.cubo9 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(39, 65, 109);
+    top: 480px;
+    right: 470px;
+    transform: rotate(45deg);
+}
+.cubo10 {
+    width: 190px;
+    height: 290px;
+    background-color: rgb(39, 65, 109);
+    top: -165px;
+    right: 155px;
+    transform: rotate(45deg);
+}
+.cubo11 {
+    width: 190px;
+    height: 300px;
+    background-color: rgb(39, 65, 109);
+    top: -173px;
+    right: 431px;
+    transform: rotate(45deg);
+}
+.cubo12 {
+    width: 190px;
+    height: 190px;
+    background-color: rgb(39, 65, 109);
+    top: -80px;
+    right: -90px;
+    transform: rotate(45deg);
+}
+.cubo13 {
+    width: 290px;
+    height: 190px;
+    background-color: rgb(39, 65, 109);
+    top: 515px;
+    right: -175px;
+    transform: rotate(45deg);
+}
+.cubo14 {
+    width: 390px;
+    height: 390px;
+    background-color: rgb(221, 10, 10);
+    bottom: -282px;
+    right: 230px;
+    transform: rotate(45deg);
+}
+.cubo15 {
+    width: 190px;
+    height: 390px;
+    background-color: rgb(221, 10, 10);
+    bottom: -210px;
+    right: 685px;
+    transform: rotate(45deg);
+}
+.cubo16 {
+    width: 490px;
+    height: 190px;
+    background-color: rgb(221, 10, 10);
+    top: -47px;
+    right: 568px;
+    transform: rotate(45deg);
+}
+.INV {
+    width: 130px;
+    position: absolute;
+    z-index: 100;
+    top: 345px;
+    right: 80px;
+}
+.invtxt {
+    position: absolute;
+    text-decoration: none;
+    font-style: none;
+    font-display: none;
+    color: white;
+    top: 470px;
+    right: 90px;
+    z-index: 100;
+    font-weight: bold;
+    font-size: 20px;
+}
+p {
+    text-decoration: none;
+    margin: 7px;
+}
+a {
+    text-decoration: none;
+}
+.amarelo {
+    position: absolute;
+    left: 10px;
+    bottom: 200px;
+    width: 400px;
+}
+.txt {
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    font-size: 30px;
+    top: 390px;
+    left: 10px;
+    grid-row: 0px;
+}
+.LC {
+    position: absolute;
+    color: rgb(239, 9, 9);
+    font-weight: bold;
+    top:    120px;
+    font-size: 40px;
+}
+.qhse {
+    position: absolute;
+    z-index: 100;
+    bottom: 160px;
+    right: 225px;
+    width: 120px;
+}
+.qhtxt {
+    position: absolute;
+    text-decoration: none;
+    font-style: none;
+    font-display: none;
+    color: white;
+    bottom: 140px;
+    right: 200px;
+    z-index: 100;
+    font-weight: bold;
+    font-size: 20px;
+}
+.kaisen {
+    position: absolute;
+    top: 85px;
+    width: 100px;
+    right: 95px;
+    z-index: 100;
+}
+.kistxt {
+    position: absolute;
+    z-index: 100;
+    top: 175px;
+    right: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+.potxt,
+.potxt2 {
+    position: absolute;
+    z-index: 100;
+    margin: 0;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+}
+.po {
+    position: absolute;
+    z-index: 100;
+    right: 230px;
+    top: 210px;
+    width: 110px;
+}
+.potxt {
+    top: 320px;
+    right: 227px;
+}
+.potxt2 {
+    top: 340px;
+    right: 230px;
+}
+.vsm {
+    position: absolute;
+    z-index: 100;
+    top: 70px;
+    right: 360px;
+    width: 130px;
+}
+.vsmtxt {
+    position: absolute;
+    z-index: 100;
+    font-weight: bold;
+    font-size: 25px; 
+    top: 190px;
+    right: 390px;
+    color: white;
+}
+.KPI {
+    position: absolute;
+    z-index: 100;
+    bottom: 310px;
+    right: 360px;
+    width: 115px;
+}
+.kpitxt {
+    position: absolute;
+    z-index: 100;
+    bottom: 270px;
+    right: 360px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+}
+.exp {
+    position: absolute;
+    width: 600px;
+    top: 180px;
+}
+.S5 {
+    position: absolute;
+    z-index: 100;
+    top: 200px;
+    width: 130px;
+    right: 500px;
+}
+.s5txt {
+    position: absolute;
+    z-index: 100;
+    right: 540px;
+    top: 330px;
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+}
+.cubo1,
+.ubo2,
+.cubo3,
+.cubo4,
+.cubo5,
+.cubo6,
+.cubo7,
+.cubo8,
+.cubo9,
+.INV,
+.kaisen,
+.qhse,
+.S5,
+.KPI,
+.po,
+.vsm,
+.invtxt,
+.kistxt,
+.qhtxt,
+.s5txt,
+.kpitxt,
+.potxt,
+.vsmtxt,
+.CI,
+.Citxt,
+.Citxt2 {
+    cursor: pointer;
+}
+.CI {
+    position: absolute;
+    z-index: 100;
+    bottom: 170px;
+    right: 500px;
+    width: 110px;
+}
+.Citxt {
+    position: absolute;
+    z-index: 100;
+    right: 490px;
+    bottom: 142px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+.Citxt2 {
+    position: absolute;
+    z-index: 100;
+    right: 520px;
+    bottom: 125px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+.org {
+    position: absolute;
+    bottom: 310px;
+    width: 120px;
+    right: 645px;
+    z-index: 100;
+}
+.orgtxt {
+    position: absolute;
+    z-index: 100;
+    bottom: 290px;
+    right: 620px;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+}
+.ceva {
+    position: absolute;
+    bottom: 15px;
+    width: 150px;
+    left: 10px;
+}
+
+
+
+
+@media (max-height: 612px) {
+
+
+    .ceva {
+        width: 100px;
+    }
+
+
+    .cubo1,
+    .cubo2,
+    .cubo3,
+    .cubo4,
+    .cubo5,
+    .cubo6,
+    .cubo7,
+    .cubo8,
+    .cubo9,
+    .cubo10,
+    .cubo11,
+    .cubo12,
+    .cubo13,
+    .cubo14,
+    .cubo15,
+    .cubo16 {
+        position: absolute;
+        z-index: 10;
+    }
+    .cubo1 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(221, 10, 10);
+        top: 50px;
+        right: 45px;
+        transform: rotate(45deg);
+    }
+    .cubo2 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(221, 10, 10);
+        top: 50px;
+        right: 335px;
+        transform: rotate(45deg);
+    }
+    .cubo3 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(221, 10, 10);
+        top: 330px;
+        right: 50px;
+        transform: rotate(45deg);
+    }
+    .cubo4 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(221, 10, 10);
+        top: 330px;
+        right: 330px;
+        transform: rotate(45deg);
+    }
+    .cubo5 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(221, 10, 10);
+        top: 330px;
+        right: 610px;
+        transform: rotate(45deg);
+    }
+    .cubo6 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(39, 65, 109);
+        top: 190px;
+        right: 190px;
+        transform: rotate(45deg);
+    }
+    .cubo7 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(39, 65, 109);
+        top: 190px;
+        right: 470px;
+        transform: rotate(45deg);
+    }
+    .cubo8 {
+        width: 190px;
+        height: 180px;
+        background-color: rgb(39, 65, 109);
+        top: 470px;
+        right: 188px;
+        transform: rotate(45deg);
+    }
+    .cubo9 {
+        width: 190px;
+        height: 180px;
+        background-color: rgb(39, 65, 109);
+        top: 470px;
+        right: 469px;
+        transform: rotate(45deg);
+    }
+    .cubo10 {
+        width: 190px;
+        height: 290px;
+        background-color: rgb(39, 65, 109);
+        top: -175px;
+        right: 155px;
+        transform: rotate(45deg);
+    }
+    .cubo11 {
+        width: 190px;
+        height: 300px;
+        background-color: rgb(39, 65, 109);
+        top: -193px;
+        right: 431px;
+        transform: rotate(45deg);
+    }
+    .cubo12 {
+        width: 190px;
+        height: 190px;
+        background-color: rgb(39, 65, 109);
+        top: -100px;
+        right: -90px;
+        transform: rotate(45deg);
+    }
+    .cubo13 {
+        width: 290px;
+        height: 190px;
+        background-color: rgb(39, 65, 109);
+        top: 505px;
+        right: -175px;
+        transform: rotate(45deg);
+    }
+    .cubo14 {
+        width: 390px;
+        height: 390px;
+        background-color: rgb(221, 10, 10);
+        bottom: -425px;
+        right: 230px;
+        transform: rotate(45deg);
+    }
+    .cubo15 {
+        width: 190px;
+        height: 390px;
+        background-color: rgb(221, 10, 10);
+        bottom: -355px;
+        right: 681px;
+        transform: rotate(45deg);
+    }
+    .cubo16 {
+        width: 490px;
+        height: 190px;
+        background-color: rgb(221, 10, 10);
+        top: -57px;
+        right: 568px;
+        transform: rotate(45deg);
+    }
+    .INV {
+        width: 130px;
+        position: absolute;
+        z-index: 100;
+        top: 345px;
+        right: 80px;
+    }
+    .invtxt {
+        position: absolute;
+        text-decoration: none;
+        font-style: none;
+        font-display: none;
+        color: white;
+        top: 470px;
+        right: 90px;
+        z-index: 100;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    p {
+        text-decoration: none;
+        margin: 7px;
+    }
+    a {
+        text-decoration: none;
+    }
+    .amarelo {
+        position: relative;
+        left: 10px;
+        top: 420px;
+        width: 400px;
+    }
+    .txt {
+        font-weight: bold;
+        color: white;
+        position: relative;
+        font-size: 30px;
+        top: 250px;
+        left: 10px;
+        grid-row: 0px;
+    }
+    .LC {
+        position: relative;
+        color: rgb(239, 9, 9);
+        font-weight: bold;
+        top: -50px;
+        font-size: 40px;
+    }
+    .qhse {
+        position: absolute;
+        z-index: 100;
+        bottom: 35px;
+        right: 225px;
+        width: 120px;
+    }
+    .qhtxt {
+        position: absolute;
+        text-decoration: none;
+        font-style: none;
+        font-display: none;
+        color: white;
+        bottom: 20px;
+        right: 200px;
+        z-index: 100;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .kaisen {
+        position: absolute;
+        top: 85px;
+        width: 100px;
+        right: 95px;
+        z-index: 100;
+    }
+    .kistxt {
+        position: absolute;
+        z-index: 100;
+        top: 175px;
+        right: 80px;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+    }
+    .potxt,
+    .potxt2 {
+        position: absolute;
+        z-index: 100;
+        margin: 0;
+        font-weight: bold;
+        color: white;
+        font-size: 20px;
+    }
+    .po {
+        position: absolute;
+        z-index: 100;
+        right: 230px;
+        top: 210px;
+        width: 110px;
+    }
+    .potxt {
+        top: 320px;
+        right: 227px;
+    }
+    .potxt2 {
+        top: 340px;
+        right: 230px;
+    }
+    .vsm {
+        position: absolute;
+        z-index: 100;
+        top: 70px;
+        right: 360px;
+        width: 130px;
+    }
+    .vsmtxt {
+        position: absolute;
+        z-index: 100;
+        font-weight: bold;
+        font-size: 25px; 
+        top: 190px;
+        right: 390px;
+        color: white;
+    }
+    .KPI {
+        position: absolute;
+        z-index: 100;
+        bottom: 160px;
+        right: 360px;
+        width: 115px;
+    }
+    .kpitxt {
+        position: absolute;
+        z-index: 100;
+        bottom: 120px;
+        right: 360px;
+        font-weight: bold;
+        color: white;
+        font-size: 20px;
+    }
+    .exp {
+        position: absolute;
+        width: 500px;
+        top: 140px;
+    }
+    .S5 {
+        position: absolute;
+        z-index: 100;
+        top: 200px;
+        width: 130px;
+        right: 500px;
+    }
+    .s5txt {
+        position: absolute;
+        z-index: 100;
+        right: 540px;
+        top: 330px;
+        color: white;
+        font-weight: bold;
+        font-size: 35px;
+    }
+    .cubo1,
+    .ubo2,
+    .cubo3,
+    .cubo4,
+    .cubo5,
+    .cubo6,
+    .cubo7,
+    .cubo8,
+    .cubo9,
+    .INV,
+    .kaisen,
+    .qhse,
+    .S5,
+    .KPI,
+    .po,
+    .vsm,
+    .invtxt,
+    .kistxt,
+    .qhtxt,
+    .s5txt,
+    .kpitxt,
+    .potxt,
+    .vsmtxt,
+    .CI,
+    .Citxt,
+    .Citxt2 {
+        cursor: pointer;
+    }
+    .CI {
+        position: absolute;
+        z-index: 100;
+        bottom: 30px;
+        right: 500px;
+        width: 110px;
+    }
+    .Citxt {
+        position: absolute;
+        z-index: 100;
+        right: 490px;
+        bottom: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .Citxt2 {
+        position: absolute;
+        z-index: 100;
+        right: 520px;
+        bottom: -10px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .org {
+        position: absolute;
+        bottom: 170px;
+        width: 120px;
+        right: 645px;
+        z-index: 100;
+    }
+    .orgtxt {
+        position: absolute;
+        z-index: 100;
+        bottom: 140px;
+        right: 620px;
+        color: white;
+        font-weight: bold;
+        font-size: 25px;
+}
+}

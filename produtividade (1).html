@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtividade | Fevereiro 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <a href="file:///C:/Users/Massonl/Downloads/luan%20v2%201/luan/PO/Per.html">
+        <p class="prod1"></p>
+        <img src="c:\Users\Massonl\Downloads\luan v2 1\luan\image\slide_52_img_236.png" alt="" class="vtd1img">
+        <div class="vtli3"></div>
+    <style>
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+
+        * {
+            cursor: default 
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+
+            /* Gradiente + imagem juntos */
+            background:
+            linear-gradient(
+            rgba(29, 78, 108, 0.218),
+            rgba(51, 89, 118, 0.355)
+            ),
+            url("https://th.bing.com/th/id/OIP.JDvNtpAxUsMVmCIRhd8mFAHaEK?w=330&h=186&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: clamp(10px, 2vw, 20px) clamp(15px, 3vw, 40px);
+            background: rgb(10, 35, 81);
+            border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .title {
+            font-size: clamp(20px, 3.5vw, 42px);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .logo {
+            font-size: clamp(18px, 2.5vw, 32px);
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: right;
+        }
+
+        .logo span {
+            font-size: clamp(12px, 1.2vw, 18px);
+            letter-spacing: 1px;
+        }
+
+        .upload-section {
+            background: rgba(255, 51, 51, 0.9);
+            padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 30px);
+            margin: clamp(10px, 2vw, 20px) clamp(15px, 3vw, 40px);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .upload-section > div:first-child {
+            font-size: clamp(14px, 1.5vw, 16px);
+            font-weight: bold;
+        }
+
+        .upload-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .upload-btn {
+            background: white;
+            color: #ff3333;
+            padding: clamp(8px, 1.2vw, 12px) clamp(15px, 2vw, 25px);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: clamp(12px, 1.2vw, 14px);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .upload-btn:hover {
+            background: #f0f0f0;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .section {
+            padding: clamp(15px, 3vw, 30px) clamp(15px, 3vw, 40px);
+        }
+
+        .section-header {
+            font-size: clamp(22px, 3vw, 36px);
+            font-weight: bold;
+            margin-bottom: clamp(15px, 2vw, 25px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .turno-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .turno-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .turno-btn.active {
+            background: #ff3333;
+            border-color: #ff3333;
+        }
+
+        .turno-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .meta-badge {
+            background: #ff3333;
+            padding: clamp(6px, 1vw, 8px) clamp(15px, 2vw, 20px);
+            border-radius: 5px;
+            font-size: clamp(20px, 2.5vw, 28px);
+            font-weight: bold;
+        }
+
+        .chart-area {
+            background: rgba(10, 35, 81, 0.854);
+            padding: clamp(15px, 2.5vw, 30px);
+            border-radius: 10px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            overflow-x: auto;
+        }
+
+        .bars-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: clamp(150px, 20vh, 250px);
+            margin-bottom: 10px;
+            gap: clamp(2px, 0.5vw, 8px);
+            min-width: 600px;
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            min-width: 15px;
+        }
+
+        .bar {
+            width: 100%;
+            background: #00ff66;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 20px;
+        }
+
+        .bar.red {
+            background: #ff3333;
+        }
+
+        .bar.dsr {
+            background: #1a4580;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -22px;
+            font-size: clamp(10px, 1.2vw, 14px);
+            font-weight: bold;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .bar-label {
+            margin-top: 5px;
+            font-size: clamp(10px, 1.1vw, 13px);
+            font-weight: bold;
+            color: white;
+        }
+
+        .stats-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: rgba(10, 35, 81, 0.8);
+            font-size: clamp(10px, 1.1vw, 13px);
+            overflow-x: auto;
+            display: block;
+        }
+
+        .stats-table thead,
+        .stats-table tbody,
+        .stats-table tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: clamp(5px, 0.8vw, 8px) clamp(3px, 0.5vw, 5px);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stats-table th {
+            background: rgba(26, 69, 128, 0.8);
+            font-weight: bold;
+        }
+
+        .stats-table .label-cell {
+            background: rgba(26, 69, 128, 0.9);
+            font-weight: bold;
+            text-align: left;
+            padding-left: clamp(8px, 1.5vw, 15px);
+            width: 120px;
+            min-width: 80px;
+        }
+
+        .dsr-cell {
+            background: rgba(26, 69, 128, 0.6);
+            font-weight: bold;
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: clamp(15px, 2vw, 20px);
+            font-size: clamp(11px, 1.2vw, 13px);
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .plano-acao {
+            position: fixed;
+            bottom: clamp(15px, 2vw, 30px);
+            right: clamp(15px, 2vw, 30px);
+            background: #ff3333;
+            color: white;
+            padding: clamp(10px, 1.5vw, 15px) clamp(20px, 2.5vw, 30px);
+            border-radius: 8px;
+            font-size: clamp(14px, 1.5vw, 18px);
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .plano-acao:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                text-align: center;
+            }
+
+            .upload-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .upload-buttons {
+                justify-content: center;
+            }
+
+            .plano-acao {
+                font-size: 14px;
+                padding: 10px 15px;
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">PRODUTIVIDADE | FEVEREIRO 2026</div>
+        <div class="logo">
+            CEVA<br>
+            <span>LOGÍSTICS LTDA</span>
+        </div>
+    </div>
+
+    <div class="upload-section">
+        <div>📊 Importar dados do Excel</div>
+        <div class="upload-buttons">
+            <label for="fileInput" class="upload-btn">
+                📁 Selecionar Arquivo
+            </label>
+            <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFileUpload(event)">
+            <button class="upload-btn" onclick="downloadTemplate()">⬇️ Baixar Template</button>
+            <button class="upload-btn" onclick="useExampleData()">📝 Usar Dados de Exemplo</button>
+        </div>
+    </div>
+
+    <!-- PICKING -->
+    <div class="section">
+        <div class="section-header">
+            <span>PICKING</span>
+            <span class="meta-badge">META: <span id="pickingMeta">42</span></span>
+        </div>
+        
+        <div class="turno-selector">
+            <button class="turno-btn active" onclick="switchTurno('picking', 1)">1º TURNO</button>
+            <button class="turno-btn" onclick="switchTurno('picking', 2)">2º TURNO</button>
+        </div>
+
+        <div class="chart-area">
+            <div id="pickingBars" class="bars-container"></div>
+            <table class="stats-table">
+                <tbody id="pickingStats"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PACKING -->
+    <div class="section">
+        <div class="section-header">
+            <span>PACKING</span>
+            <span class="meta-badge">META: <span id="packingMeta">48</span></span>
+        </div>
+
+        <div class="turno-selector">
+            <button class="turno-btn active" onclick="switchTurno('packing', 1)">1º TURNO</button>
+            <button class="turno-btn" onclick="switchTurno('packing', 2)">2º TURNO</button>
+        </div>
+
+        <div class="chart-area">
+            <div id="packingBars" class="bars-container"></div>
+            <table class="stats-table">
+                <tbody id="packingStats"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        * DSR = Descanso Semanal Remunerado | Dados atualizados automaticamente via Excel
+    </div>
+
+    <script>
+        // Armazenar dados dos dois turnos
+        let dadosGlobais = {
+            picking: {
+                turno1: { missoes: [], horas: [] },
+                turno2: { missoes: [], horas: [] },
+                turnoAtual: 1
+            },
+            packing: {
+                turno1: { missoes: [], horas: [] },
+                turno2: { missoes: [], horas: [] },
+                turnoAtual: 1
+            }
+        };
+
+        // Função para alternar entre turnos
+        function switchTurno(tipo, turno) {
+            dadosGlobais[tipo].turnoAtual = turno;
+            
+            // Atualizar botões
+            const section = tipo === 'picking' ? document.querySelectorAll('.section')[0] : document.querySelectorAll('.section')[1];
+            const buttons = section.querySelectorAll('.turno-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx + 1 === turno) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // Atualizar visualização
+            const dados = turno === 1 ? dadosGlobais[tipo].turno1 : dadosGlobais[tipo].turno2;
+            const meta = tipo === 'picking' ? 42 : 48;
+            
+            if (tipo === 'picking') {
+                createBars('pickingBars', dados.missoes, dados.horas, meta);
+                updateStatsTable('pickingStats', dados.missoes, dados.horas);
+            } else {
+                createBars('packingBars', dados.missoes, dados.horas, meta);
+                updateStatsTable('packingStats', dados.missoes, dados.horas);
+            }
+        }
+
+        // Função para criar barras do gráfico
+        function createBars(containerId, missoes, horas, meta) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            const maxValue = Math.max(...missoes, meta);
+
+            missoes.forEach((missao, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bar-wrapper';
+
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                
+                if (missao === 0) {
+                    bar.classList.add('dsr');
+                    bar.style.height = '30px';
+                } else if (missao < meta) {
+                    bar.classList.add('red');
+                    bar.style.height = `${(missao / maxValue) * 100}%`;
+                } else {
+                    bar.style.height = `${(missao / maxValue) * 100}%`;
+                }
+
+                const value = document.createElement('div');
+                value.className = 'bar-value';
+                value.textContent = missao === 0 ? 'DSR' : missao;
+                bar.appendChild(value);
+
+                const label = document.createElement('div');
+                label.className = 'bar-label';
+                label.textContent = index + 1;
+
+                wrapper.appendChild(bar);
+                wrapper.appendChild(label);
+                container.appendChild(wrapper);
+            });
+        }
+
+        // Função para atualizar tabela de estatísticas
+        function updateStatsTable(tableId, missoes, horas) {
+            const table = document.getElementById(tableId);
+            
+            let html = '<tr><th class="label-cell">DIA</th>';
+            missoes.forEach((m, i) => {
+                html += `<th>${i + 1}</th>`;
+            });
+            html += '</tr>';
+
+            html += '<tr><th class="label-cell">Missões</th>';
+            missoes.forEach((m, i) => {
+                if (m === 0) {
+                    html += '<td class="dsr-cell">DSR</td>';
+                } else {
+                    html += `<td>${m}</td>`;
+                }
+            });
+            html += '</tr>';
+
+            html += '<tr><th class="label-cell">Horas</th>';
+            horas.forEach((h, i) => {
+                if (h === 0) {
+                    html += '<td class="dsr-cell">DSR</td>';
+                } else {
+                    html += `<td>${h}</td>`;
+                }
+            });
+            html += '</tr>';
+
+            table.innerHTML = html;
+        }
+
+        // Função para converter tempo Excel para número
+        function timeToNumber(value) {
+            if (typeof value === 'number' && value < 1) {
+                // Excel armazena tempo como fração do dia (ex: 0.325 = 7:48)
+                return Math.round(value * 24);
+            }
+            if (typeof value === 'object' && value.getHours) {
+                return value.getHours();
+            }
+            return parseInt(value) || 0;
+        }
+
+        // Função para processar arquivo Excel
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+
+                    // Processar Picking
+                    if (workbook.SheetNames.includes('Picking')) {
+                        const sheet = workbook.Sheets['Picking'];
+                        processSheetData(sheet, 'picking');
+                    }
+
+                    // Processar Packing
+                    if (workbook.SheetNames.includes('Packing')) {
+                        const sheet = workbook.Sheets['Packing'];
+                        processSheetData(sheet, 'packing');
+                    }
+
+                    // Atualizar visualização do turno atual
+                    switchTurno('picking', dadosGlobais.picking.turnoAtual);
+                    switchTurno('packing', dadosGlobais.packing.turnoAtual);
+
+                    alert('✅ Dados importados com sucesso!');
+                } catch (error) {
+                    alert('❌ Erro ao processar arquivo: ' + error.message);
+                    console.error(error);
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        // Função para processar dados da planilha
+        function processSheetData(sheet, tipo) {
+            const range = XLSX.utils.decode_range(sheet['!ref']);
+            
+            // Inicializar arrays
+            const turno1 = { missoes: [], horas: [] };
+            const turno2 = { missoes: [], horas: [] };
+
+            // Encontrar colunas (ajustado para o layout do template)
+            let col1Turno1 = -1, col1Turno2 = -1;
+            let startRow = -1;
+
+            // Procurar cabeçalhos
+            for (let R = range.s.r; R <= range.e.r; R++) {
+                for (let C = range.s.c; C <= range.e.c; C++) {
+                    const cell = sheet[XLSX.utils.encode_cell({r: R, c: C})];
+                    if (cell && cell.v) {
+                        const value = cell.v.toString().toUpperCase();
+                        if (value.includes('1º TURNO')) {
+                            col1Turno1 = C;
+                        }
+                        if (value.includes('2º TURNO')) {
+                            col1Turno2 = C;
+                        }
+                        if (value === 'DIA' && startRow === -1) {
+                            startRow = R + 1;
+                        }
+                    }
+                }
+            }
+
+            // Ler dados linha por linha
+            for (let R = startRow; R <= range.e.r && R < startRow + 31; R++) {
+                // 1º Turno
+                if (col1Turno1 >= 0) {
+                    const diaCell = sheet[XLSX.utils.encode_cell({r: R, c: col1Turno1})];
+                    const missoesCell = sheet[XLSX.utils.encode_cell({r: R, c: col1Turno1 + 1})];
+                    const horasCell = sheet[XLSX.utils.encode_cell({r: R, c: col1Turno1 + 2})];
+
+                    const missoes = missoesCell ? (parseInt(missoesCell.v) || 0) : 0;
+                    const horas = horasCell ? timeToNumber(horasCell.v) : 0;
+
+                    turno1.missoes.push(missoes);
+                    turno1.horas.push(horas);
+                }
+
+                // 2º Turno
+                if (col1Turno2 >= 0) {
+                    const diaCell = sheet[XLSX.utils.encode_cell({r: R, c: col1Turno2})];
+                    const missoesCell = sheet[XLSX.utils.encode_cell({r: R, c: col1Turno2 + 1})];
+                    const horasCell = sheet[XLSX.utils.encode_cell({r: R, c: col1Turno2 + 2})];
+
+                    const missoes = missoesCell ? (parseInt(missoesCell.v) || 0) : 0;
+                    const horas = horasCell ? timeToNumber(horasCell.v) : 0;
+
+                    turno2.missoes.push(missoes);
+                    turno2.horas.push(horas);
+                }
+            }
+
+            // Garantir 31 dias
+            while (turno1.missoes.length < 31) {
+                turno1.missoes.push(0);
+                turno1.horas.push(0);
+            }
+            while (turno2.missoes.length < 31) {
+                turno2.missoes.push(0);
+                turno2.horas.push(0);
+            }
+
+            dadosGlobais[tipo].turno1 = turno1;
+            dadosGlobais[tipo].turno2 = turno2;
+        }
+
+        // Função para usar dados de exemplo
+        function useExampleData() {
+            // Picking - Turno 1
+            dadosGlobais.picking.turno1 = {
+                missoes: [0,0,0,0,0,42,43,42,43,0,0,43,43,42,43,42,0,0,42,42,43,43,42,0,0,42,43,42,43,0,0],
+                horas: [0,0,0,0,0,35,21,23,32,0,0,24,24,40,30,26,0,0,36,33,30,37,38,0,0,19,33,34,39,0,0]
+            };
+
+            // Picking - Turno 2
+            dadosGlobais.picking.turno2 = {
+                missoes: [0,0,0,0,0,40,41,40,41,0,0,41,41,40,41,40,0,0,40,40,41,41,40,0,0,40,41,40,41,0,0],
+                horas: [0,0,0,0,0,30,18,20,28,0,0,22,22,35,26,24,0,0,32,29,27,33,34,0,0,17,29,30,35,0,0]
+            };
+
+            // Packing - Turno 1
+            dadosGlobais.packing.turno1 = {
+                missoes: [0,0,0,0,0,48,49,49,49,0,0,49,49,49,48,50,0,0,48,49,49,49,48,0,0,50,48,49,0,49,0],
+                horas: [0,0,0,0,0,40,26,20,23,0,0,23,23,31,21,23,0,0,36,31,30,37,32,0,0,17,34,35,0,37,0]
+            };
+
+            // Packing - Turno 2
+            dadosGlobais.packing.turno2 = {
+                missoes: [0,0,0,0,0,46,47,47,47,0,0,47,47,47,46,48,0,0,46,47,47,47,46,0,0,48,46,47,0,47,0],
+                horas: [0,0,0,0,0,36,23,18,20,0,0,20,20,28,19,20,0,0,32,28,27,33,29,0,0,15,30,31,0,33,0]
+            };
+
+            // Atualizar visualização
+            switchTurno('picking', 1);
+            switchTurno('packing', 1);
+            
+            alert('✅ Dados de exemplo carregados!');
+        }
+
+        // Função para baixar template
+        function downloadTemplate() {
+            const wb = XLSX.utils.book_new();
+
+            // Template Picking
+            const pickingData = [
+                ['', '', 'Picking | 1º Turno', '', '', '', 'Picking | 2º Turno', '', ''],
+                ['', '', 'DIA', 'MISSÕES', 'HORAS', '', 'DIA', 'MISSÕES', 'HORAS']
+            ];
+
+            // Adicionar 31 dias
+            for (let i = 1; i <= 31; i++) {
+                pickingData.push(['', '', i, 0, 0, '', i, 0, 0]);
+            }
+
+            const wsPicking = XLSX.utils.aoa_to_sheet(pickingData);
+            XLSX.utils.book_append_sheet(wb, wsPicking, 'Picking');
+
+            // Template Packing
+            const packingData = [
+                ['', 'Packing | 1º Turno', '', '', '', 'Packing | 2º Turno', '', ''],
+                ['', 'DIA', 'MISSÕES', 'HORAS', '', 'DIA', 'MISSÕES', 'HORAS']
+            ];
+
+            // Adicionar 31 dias
+            for (let i = 1; i <= 31; i++) {
+                packingData.push(['', i, 0, 0, '', i, 0, 0]);
+            }
+
+            const wsPacking = XLSX.utils.aoa_to_sheet(packingData);
+            XLSX.utils.book_append_sheet(wb, wsPacking, 'Packing');
+
+            XLSX.writeFile(wb, 'template_produtividade.xlsx');
+        }
+
+        // Carregar dados de exemplo ao iniciar
+        window.onload = function() {
+            useExampleData();
+        };
+    </script>
+
+</body>
+</html>
